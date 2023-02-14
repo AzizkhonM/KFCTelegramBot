@@ -5,9 +5,11 @@ const TelegramBot = require("node-telegram-bot-api")
 let bot = new TelegramBot(process.env.API_TOKEN, {
     polling: true
 })
+let menu = 0
 
 bot.onText(/start/, msg => {
     console.log(msg);
+    menu = 1
     if(msg.text == "/start"){
         bot.sendMessage(msg.chat.id, "Bosh menyudasiz\nO‘zingizga zarur tugmani tanlang", {
             reply_markup: JSON.stringify({
@@ -18,6 +20,11 @@ bot.onText(/start/, msg => {
                         },
                         {
                             text: "Biz haqimizda"
+                        }
+                    ],
+                    [
+                        {
+                            text: "Filliallarimiz"
                         }
                     ]
                 ],
@@ -37,7 +44,10 @@ bot.onText(/echo/, msg => {
 
 
 bot.on("message", msg => {
-    if(msg.text == 'Orqaga'){
+
+
+    if(msg.text == "Bosh menyu"){
+        menu = 1
         bot.sendMessage(msg.chat.id, "Bosh menyudasiz\nO‘zingizga zarur tugmani tanlang", {
             reply_markup: JSON.stringify({
                 keyboard: [
@@ -48,11 +58,150 @@ bot.on("message", msg => {
                         {
                             text: "Biz haqimizda"
                         }
+                    ],
+                    [
+                        {
+                            text: "Filliallarimiz"
+                        }
                     ]
                 ],
                 resize_keyboard: true
             })
         })
+    }
+
+
+    if(msg.text == "Filliallarimiz"){
+        menu = 2
+        bot.sendMessage(msg.chat.id, "Istalgan fillialni tanlang", {
+            reply_markup: JSON.stringify({
+                keyboard: [
+                    [
+                        {
+                            text: "KFC C1"
+                        },
+                        {
+                            text: "KFC Chilonzor"
+                        },
+                        {
+                            text: "KFC Chimgan"
+                        },
+                        {
+                            text: "KFC Compass"
+                        }                      
+                    ],
+                    [
+                        {
+                            text: "KFC Fayz"
+                        },
+                        {
+                            text: "KFC Kefayat"
+                        },
+                        {
+                            text: "KFC Magic City"
+                        },
+                        {
+                            text: "KFC Family Park"
+                        },                        
+                    ],
+                    [
+                        {
+                            text: "KFC Navruz Mall"
+                        },
+                        {
+                            text: "KFC Oazis"
+                        },
+                        {
+                            text: "KFC Rossini"
+                        },
+                        {
+                            text: "KFC Samarqand Darvoza"
+                        },                        
+                    ],
+                    [
+                        {
+                            text: "KFC Westminster Drive"
+                        },
+                        {
+                            text: "KFC Kokand Drive"
+                        },
+                        {
+                            text: "KFC Sergeli Drive"
+                        },
+                        {
+                            text: "KFC Beruniy"
+                        },                        
+                    ],
+                    [
+                        {
+                            text: "Orqaga"
+                        }
+                    ]
+                ]
+            })
+        })
+    }
+
+
+    if(msg.text == "Orqaga"){
+        console.log(msg.text, menu);
+        if(menu == 2){
+            menu = 1
+            bot.sendMessage(msg.chat.id, "Bosh menyudasiz\nO‘zingizga zarur tugmani tanlang", {
+                reply_markup: JSON.stringify({
+                    keyboard: [
+                        [
+                            {
+                                text: "Menyu"
+                            },
+                            {
+                                text: "Biz haqimizda"
+                            }
+                        ],
+                        [
+                            {
+                                text: "Filliallarimiz"
+                            }
+                        ]
+                    ],
+                    resize_keyboard: true
+                })
+            })
+        }
+
+
+        if(menu == 3){
+            menu = 2
+            bot.sendMessage(msg.chat.id, "O‘zingizga zarur tugmani tanlang", {
+                reply_markup: JSON.stringify({
+                    keyboard: [
+                        [
+                            {
+                                text: "Burgerlar"
+                            },
+                            {
+                                text: "Souslar"
+                            },
+                            {
+                                text: "Desertlar"
+                            }
+                        ],
+                        [
+                            {
+                                text: "Muzqaymoqlar"
+                            },
+                            {
+                                text: "Milksheyklar"
+                            },
+                            {
+                                text: "Orqaga"
+                            }
+                        ]
+                    ],
+                    resize_keyboard: true
+                })
+            })
+        }
     }
 
 
@@ -83,6 +232,7 @@ bot.on("message", msg => {
 
     
     if(msg.text == "Menyu"){
+        menu = 2
         bot.sendMessage(msg.chat.id, "O‘zingizga zarur tugmani tanlang", {
             reply_markup: JSON.stringify({
                 keyboard: [
@@ -103,6 +253,9 @@ bot.on("message", msg => {
                         },
                         {
                             text: "Milksheyklar"
+                        },
+                        {
+                            text: "Orqaga"
                         }
                     ]
                 ],
@@ -112,7 +265,71 @@ bot.on("message", msg => {
     }
 
 
+    if(msg.text == "KFC C1"){
+        bot.sendPhoto(msg.chat.id, "https://kfc.com.uz/admin/files/4350.jpg", {
+            caption : "<b>KFC C1</b>\n\n<b>Manzil:</b> Toshkent shahri, Mirzo-Ulug‘bek tumani, O‘zbekiston ovozi ko‘chasi, 21-uy\n\n<b>Telefon raqami:</b> +998781297000",
+            parse_mode: "HTML"
+        })
+        bot.sendLocation(msg.chat.id, latitude = "41.3120621", longitude = "69.2904075")
+    }
+
+
+    if(msg.text == "KFC Chilonzor"){
+        bot.sendPhoto(msg.chat.id, "https://kfc.com.uz/admin/files/4351.jpg", {
+            caption : "<b>KFC Chilonzor</b>\n\n<b>Manzil:</b> Toshkent shahri, Chilonzor tumani, Bunyodkor shoh ko‘chasi, 52/2-uy\n\n<b>Telefon raqami:</b> +998781297000",
+            parse_mode: "HTML"
+        })
+        bot.sendLocation(msg.chat.id, latitude = "41.27553", longitude = "69.204373")
+    }
+
+
+    if(msg.text == "KFC Chimgan"){
+        bot.sendPhoto(msg.chat.id, "https://kfc.com.uz/admin/files/4352.jpg", {
+            caption : "<b>KFC Chimgan</b>\n\n<b>Manzil:</b> Toshkent shahri, Mirzo-Ulug‘bek tumani, Temur Malik ko‘chasi, 3A-uy\n\n<b>Telefon raqami:</b> +998781297000",
+            parse_mode: "HTML"
+        })
+        bot.sendLocation(msg.chat.id, latitude = "41.3516727", longitude = "69.3520268")
+    }
+
+
+    if(msg.text == "KFC Compass"){
+        bot.sendPhoto(msg.chat.id, "https://kfc.com.uz/admin/files/4353.jpg", {
+            caption : "<b>KFC Compass</b>\n\n<b>Manzil:</b> Toshkent shahri, Bektemir tumani, Toshkent halqa avtomobil yo‘li ko‘chasi, 17-uy\n\n<b>Telefon raqami:</b> +998781297000",
+            parse_mode: "HTML"
+        })
+        bot.sendLocation(msg.chat.id, latitude = "41.2391272", longitude = "69.3288088")
+    }
+
+
+    if(msg.text == "KFC Fayz"){
+        bot.sendPhoto(msg.chat.id, "https://kfc.com.uz/admin/files/4354.jpg", {
+            caption : "<b>KFC Fayz</b>\n\n<b>Manzil:</b> Toshkent shahri, Mirzo-Ulug‘bek tumani, Buyuk Ipak yo‘li ko‘chasi, 105-uy\n\n<b>Telefon raqami:</b> +998781297000",
+            parse_mode: "HTML"
+        })
+        bot.sendLocation(msg.chat.id, latitude = "41.326660796612", longitude = "69.330905661377")
+    }
+
+
+    if(msg.text == "KFC Kefayat"){
+        bot.sendPhoto(msg.chat.id, "https://kfc.com.uz/admin/files/4355.jpg", {
+            caption : "<b>KFC Kefayat</b>\n\n<b>Manzil:</b> Toshkent shahri, Yunusobod tumani, Amir Temur shoh ko‘chasi, 141-uy\n\n<b>Telefon raqami:</b> +998781297000",
+            parse_mode: "HTML"
+        })
+        bot.sendLocation(msg.chat.id, latitude = "41.3632568", longitude = "69.2876985")
+    }
+
+
+    if(msg.text == "KFC Magic City"){
+        bot.sendPhoto(msg.chat.id, "https://kfc.com.uz/admin/files/4356.jpg", {
+            caption : "<b>KFC Magic City</b>\n\n<b>Manzil:</b> Toshkent shahri, Chilonzor tumani, Bobur ko‘chasi, 174/2-uy\n\n<b>Telefon raqami:</b> +998781297002",
+            parse_mode: "HTML"
+        })
+        bot.sendLocation(msg.chat.id, latitude = "41.304179460127", longitude = "69.246250862654")
+    }
+
+
     if(msg.text == "Burgerlar"){
+        menu = 3
         bot.sendMessage(msg.chat.id, "O‘zingizga zarur tugmani tanlang", {
             reply_markup: JSON.stringify({
                 keyboard: [
@@ -122,14 +339,17 @@ bot.on("message", msg => {
                         },
                         {
                             text: "Chizburger"
-                        }
-                    ],
-                    [
+                        },
                         {
                             text: "Longer"
                         },
+                    ],
+                    [
                         {
                             text: 'Orqaga'
+                        },
+                        {
+                            text: "Bosh menyu"
                         }
                     ]
                 ],
@@ -140,6 +360,7 @@ bot.on("message", msg => {
 
 
     if(msg.text == "Souslar"){
+        menu = 3
         bot.sendMessage(msg.chat.id, "O‘zingizga zarur tugmani tanlang", {
             reply_markup: JSON.stringify({
                 keyboard: [
@@ -149,14 +370,17 @@ bot.on("message", msg => {
                         },
                         {
                             text: "Tomatli ketchup"
+                        },
+                        {
+                            text: "Pishloqli sous"
                         }
                     ],
                     [
                         {
-                            text: "Pishloqli sous"
+                            text: 'Orqaga'
                         },
                         {
-                            text: 'Orqaga'
+                            text: "Bosh menyu"
                         }
                     ]
                 ],
@@ -167,6 +391,7 @@ bot.on("message", msg => {
 
 
     if(msg.text == "Desertlar"){
+        menu = 3
         bot.sendMessage(msg.chat.id, "O‘zingizga zarur tugmani tanlang", {
             reply_markup: JSON.stringify({
                 keyboard: [
@@ -176,14 +401,17 @@ bot.on("message", msg => {
                         },
                         {
                             text: "Karamelli donat"
+                        },
+                        {
+                            text: "Olchali pirogcha"
                         }
                     ],
                     [
                         {
-                            text: "Olchali pirogcha"
+                            text: 'Orqaga'
                         },
                         {
-                            text: 'Orqaga'
+                            text: "Bosh menyu"
                         }
                     ]
                 ],
@@ -194,6 +422,7 @@ bot.on("message", msg => {
 
 
     if(msg.text == "Muzqaymoqlar"){
+        menu = 3
         bot.sendMessage(msg.chat.id, "O‘zingizga zarur tugmani tanlang", {
             reply_markup: JSON.stringify({
                 keyboard: [
@@ -208,6 +437,9 @@ bot.on("message", msg => {
                     [
                         {
                             text: 'Orqaga'
+                        },
+                        {
+                            text: "Bosh menyu"
                         }
                     ]
                 ],
@@ -218,6 +450,7 @@ bot.on("message", msg => {
 
 
     if(msg.text == "Milksheyklar"){
+        menu = 3
         bot.sendMessage(msg.chat.id, "O‘zingizga zarur tugmani tanlang", {
             reply_markup: JSON.stringify({
                 keyboard: [
@@ -232,6 +465,9 @@ bot.on("message", msg => {
                     [
                         {
                             text: 'Orqaga'
+                        },
+                        {
+                            text: "Bosh menyu"
                         }
                     ]
                 ],
@@ -258,7 +494,7 @@ bot.on("message", msg => {
                         }
                     ]
                 ]
-            }
+            },
         })
     }
 
@@ -527,16 +763,36 @@ bot.on("message", msg => {
     }
 
 
-    if(msg.data == "Buyurtma"){
-        bot.sendContact(msg.chat.id, "998977281104", "Kuryer")
-    }
 })
 
 
 bot.on("callback_query", msg => {
     console.log(msg);
     if(msg.data == "Buyurtma"){
-        bot.sendContact(msg.message.chat.id, "998977281104", "Kuryer")
+        bot.sendContact(msg.message.chat.id, "998971234567", "Kuryer")
+    }
+    if(msg.data == "Back to Main"){
+        console.log(msg);
+        bot.sendMessage(msg.chat.id, "Bosh menyudasiz\nO‘zingizga zarur tugmani tanlang", {
+            reply_markup: JSON.stringify({
+                keyboard: [
+                    [
+                        {
+                            text: "Menyu"
+                        },
+                        {
+                            text: "Biz haqimizda"
+                        }
+                    ],
+                    [
+                        {
+                            text: "Filliallarimiz"
+                        }
+                    ]
+                ],
+                resize_keyboard: true
+            })
+        })
     }
 })
 
