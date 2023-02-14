@@ -328,6 +328,87 @@ bot.on("message", msg => {
     }
 
 
+    if(msg.text == "KFC Family Park"){
+        bot.sendPhoto(msg.chat.id, "https://kfc.com.uz/admin/files/5248.jpg", {
+            caption : "<b>KFC Family Park</b>\n\n<b>Manzil:</b> Samarqand shahri, Narpay ko‘chasi, 76-uy\n\n<b>Telefon raqami:</b> +998781297000",
+            parse_mode: "HTML"
+        })
+        bot.sendLocation(msg.chat.id, latitude = "39.663591", longitude = "66.90738")
+    }
+
+
+    if(msg.text == "KFC Navruz Mall"){
+        bot.sendPhoto(msg.chat.id, "https://kfc.com.uz/admin/files/4357.jpg", {
+            caption : "<b>KFC Navruz Mall</b>\n\n<b>Manzil:</b> Andijon shahri, Loihaviy Mashrab ko‘chasi, 60-uy\n\n<b>Telefon raqami:</b> +998781297002",
+            parse_mode: "HTML"
+        })
+        bot.sendLocation(msg.chat.id, latitude = "40.752057233056", longitude = "72.362774225604")
+    }
+
+
+    if(msg.text == "KFC Oazis"){
+        bot.sendPhoto(msg.chat.id, "https://kfc.com.uz/admin/files/4358.jpg", {
+            caption : "<b>KFC Oazis</b>\n\n<b>Manzil:</b> Toshkent shahri, Uchtepa tumani, Lutfiy ko‘chasi, 21A-uy\n\n<b>Telefon raqami:</b> +998781297000",
+            parse_mode: "HTML"
+        })
+        bot.sendLocation(msg.chat.id, latitude = "41.2860209", longitude = "69.1860038")
+    }
+
+
+    if(msg.text == "KFC Rossini"){
+        bot.sendPhoto(msg.chat.id, "https://kfc.com.uz/admin/files/4359.jpg", {
+            caption : "<b>KFC Rossini</b>\n\n<b>Manzil:</b> Toshkent shahri, Shayxontohur tumani, Abdulla Qodiriy ko‘chasi, 20-uy\n\n<b>Telefon raqami:</b> +998781297000",
+            parse_mode: "HTML"
+        })
+        bot.sendLocation(msg.chat.id, latitude = "41.3272976", longitude = "69.2476312")
+    }
+
+
+    if(msg.text == "KFC Samarqand Darvoza"){
+        bot.sendPhoto(msg.chat.id, "https://kfc.com.uz/admin/files/4360.jpg", {
+            caption : "<b>KFC Samarqand Darvoza</b>\n\n<b>Manzil:</b> Toshkent shahri, Shayxontohur tumani, Qoratosh ko‘chasi, 5A-uy\n\n<b>Telefon raqami:</b> +998781297000",
+            parse_mode: "HTML"
+        })
+        bot.sendLocation(msg.chat.id, latitude = "41.3161546", longitude = "69.2312087")
+    }
+
+
+    if(msg.text == "KFC Westminster Drive"){
+        bot.sendPhoto(msg.chat.id, "https://kfc.com.uz/admin/files/4361.jpg", {
+            caption : "<b>KFC Westminster Drive</b>\n\n<b>Manzil:</b> Toshkent shahri, Yashnobod tumani, Istiqbol ko‘chasi, 17-uy\n\n<b>Telefon raqami:</b> +998781297000",
+            parse_mode: "HTML"
+        })
+        bot.sendLocation(msg.chat.id, latitude = "41.307343183014", longitude = "69.284071521565")
+    }
+
+
+    if(msg.text == "KFC Kokand Drive"){
+        bot.sendPhoto(msg.chat.id, "https://kfc.com.uz/admin/files/4362.jpg", {
+            caption : "<b>KFC Kokand Drive</b>\n\n<b>Manzil:</b> Qo‘qon shahri, Abu Toib Hukandiy ko‘chasi, 101D-uy\n\n<b>Telefon raqami:</b> +998781297002",
+            parse_mode: "HTML"
+        })
+        bot.sendLocation(msg.chat.id, latitude = "40.54885433956", longitude = "70.924030661377")
+    }
+
+
+    if(msg.text == "KFC Sergeli Drive"){
+        bot.sendPhoto(msg.chat.id, "https://kfc.com.uz/admin/files/5247.jpg", {
+            caption : "<b>KFC Sergeli Drive</b>\n\n<b>Manzil:</b> Toshkent shahri, Yangihayot tumani, Uzar ko‘chasi, 78-uy\n\n<b>Telefon raqami:</b> +998781297002",
+            parse_mode: "HTML"
+        })
+        bot.sendLocation(msg.chat.id, latitude = "41.2256654", longitude = "69.1896485")
+    }
+
+
+    if(msg.text == "KFC Beruniy"){
+        bot.sendPhoto(msg.chat.id, "https://kfc.com.uz/admin/files/5263.jpg", {
+            caption : "<b>KFC Beruniy</b>\n\n<b>Manzil:</b> Toshkent shahri, Shayxontohur tumani, Beruniy shoh ko‘chasi, 41A-uy\n\n<b>Telefon raqami:</b> +998781297000",
+            parse_mode: "HTML"
+        })
+        bot.sendLocation(msg.chat.id, latitude = "41.3445598", longitude = "69.2056435")
+    }
+
+
     if(msg.text == "Burgerlar"){
         menu = 3
         bot.sendMessage(msg.chat.id, "O‘zingizga zarur tugmani tanlang", {
